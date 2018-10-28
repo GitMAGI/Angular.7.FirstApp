@@ -1,0 +1,14 @@
+<h1>Home Page</h1>
+
+<p [ngClass]="{
+  'text-danger': isDanger
+}">Testo</p>
+
+<div class="row">
+  <div class="col-xs-6">
+    <button class="btn btn-warning" (click)="scaricaErroreDatiAPIFetch_click()">Error</button>
+  </div>
+  <div class="col-xs-6">
+    <button class="btn btn-primary" (click)="scaricaDatiAPIFetch_click()">No Error</button>
+  </div>
+</div>

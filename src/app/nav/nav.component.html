@@ -1,0 +1,23 @@
+<!-- Image and text -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">
+    <img src="assets/img/ngx-bootstrap.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    {{appTitle}}
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div *ngIf="menuList" class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul *ngFor="let item of menuList" class="navbar-nav">
+
+      <li *ngIf="item.visible" class="nav-item">
+          <a class="nav-link" [ngClass]="{'disabled': !item.enabled}" routerLink={{item.href}}><span class="{{item.icon}}"></span> {{item.title}}</a>
+      </li>
+      
+    </ul>
+
+  </div>
+
+</nav>
