@@ -4,11 +4,13 @@
   'text-danger': isDanger
 }">Testo</p>
 
-<div class="row">
-  <div class="col-xs-6">
-    <button class="btn btn-warning" (click)="scaricaErroreDatiAPIFetch_click()">Error</button>
-  </div>
-  <div class="col-xs-6">
-    <button class="btn btn-primary" (click)="scaricaDatiAPIFetch_click()">No Error</button>
-  </div>
+<div class="col-xs-12">
+  <button class="btn btn-warning" (click)="scaricaErroreDatiAPIFetch_click()">GetError</button>
+  <button class="btn btn-primary" (click)="scaricaDatiAPIFetch_click()">NoError</button>
+  <button class="btn btn-danger" (click)="toggleGeneriError_click()">Label</button>
+</div>
+
+<div class="col-xs-12 alert alert-danger" *ngIf="error">
+  <strong>Oops!</strong> An error occurred fetching data. Please try again.
+  <pre>{{error}}</pre>
 </div>

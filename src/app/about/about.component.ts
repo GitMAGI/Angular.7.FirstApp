@@ -10,6 +10,11 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("About Component onInit called");
+  }
+
+  ngOnDestroy() {
+    console.log("About Component onDestroy called");
   }
 
 }

@@ -8,11 +8,25 @@ import {DataService} from '../data.service';
 })
 export class HomeComponent implements OnInit {
 
+  error: any;
+
   isDanger: boolean = false;
 
   constructor(private service: DataService) { }
 
   ngOnInit() {
+    console.log("Home Component onInit called");
+  }
+
+  ngOnDestroy() {
+    console.log("Home Component onDestroy called");
+  }
+
+  async toggleGeneriError_click(){
+    if(this.error == null || this.error == '')
+      this.error = "Test Errore Daje";
+    else
+      this.error = null;
   }
 
   async scaricaDatiAPIFetch_click(){
