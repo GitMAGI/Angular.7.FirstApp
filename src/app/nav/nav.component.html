@@ -14,9 +14,9 @@
     <ul *ngFor="let item of menuList" class="navbar-nav">
 
       <li *ngIf="item.visible" class="nav-item">
-          <a class="nav-link" [ngClass]="{'disabled': !item.enabled}" [routerLink]="item.enabled ? item.href : []">
-            <fa-icon icon="{{item.icon}}"></fa-icon> {{item.title}}
-          </a>
+        <a class="nav-link" [ngClass]="{'disabled': !item.enabled}" [routerLink]="item.enabled ? item.href : []">
+          <fa-icon icon="{{item.icon}}"></fa-icon> {{item.title}}
+        </a>
       </li>
       
     </ul>

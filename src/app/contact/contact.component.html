@@ -1,16 +1,29 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
 <div class="container-fluid">
 
-  <div class="row">
-    <div class="col-xs-12">
-      <p>contact works!</p>
-    </div>
-  </div>
+  <h1>Contact</h1>
 
   <div class="row">
     <div class="col-lg-8">
-        <table datatable [dtOptions]="dtOptions" class="table table-striped" cellspacing="0" width="100%"></table>
+        <table datatable [dtOptions]="dtOptions" class="table table-striped" cellspacing="0" width="100%">
+          <thead>
+            <tr *ngIf="dtHeaders">
+              <th><input type="checkbox" /></th>
+              <th *ngFor="let dtHeader of dtHeaders">{{dtHeader.title}}</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="dtData">
+            <tr *ngFor="let dtDataRow of dtData">
+              <td><input type="checkbox" /></td>
+              <td *ngFor="let dtDataColumn of dtDataRow">{{dtDataColumn}}</td>
+              <td>
+                  <a *ngIf="readPermission && !writePermission" [routerLink]="[areaUri, '0']" class="btn btn-outline-info btn-sm" title="View" data-toggle="tooltip"><fa-icon icon="eye"></fa-icon></a>
+                  <a *ngIf="writePermission" [routerLink]="[areaUri, '0']" class="btn btn-outline-warning btn-sm" title="Edit" data-toggle="tooltip"><fa-icon icon="pen"></fa-icon></a>
+                  <a *ngIf="writePermission" [routerLink]="[areaUri, '0']" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip"><fa-icon icon="trash-alt"></fa-icon></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 

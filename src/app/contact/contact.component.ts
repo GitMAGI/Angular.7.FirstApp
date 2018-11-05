@@ -22,71 +22,32 @@ export class ContactComponent implements OnInit {
   */
 
   dtOptions: DataTables.Settings = { };
+  dtHeaders: {}[];
+  dtData: any[][];
+
+  areaUri: string = "#";
+  readPermission: boolean = true;
+  writePermission: boolean = true;
 
   constructor() { }
-
-  static actionsMenuMaker(id: any): string {
-    let readPermission = true;
-    let writePermission = false;
-    
-    let uri = "#" + "/" + (id as string);
-
-    let viewBtn = '<a href="' + uri + '" class="btn btn-outline-info btn-sm" title="View" data-toggle="tooltip"><i class="fas fa-eye"></i></a>';
-    let editBtn = '<a href="' + uri + '" class="btn btn-outline-warning btn-sm" title="Edit" data-toggle="tooltip"><i class="fas fa-pen"></i></a>';
-    let deleteBtn = '<a href="' + uri + '" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>';
-
-    let panel = "";
-
-    if(readPermission == true && writePermission == false)
-      panel += panel == "" ? "&#160;" + viewBtn : viewBtn;
-    
-    if(writePermission == true)
-      panel += panel == "" ? "&#160;" + editBtn + "&#160;" + deleteBtn : editBtn + "&#160;" + deleteBtn;
-
-    return panel;
-  }
 
   ngOnInit() {
     console.log("Contact Component onInit called");
 
-    let dataSet = getData();
-    if(dataSet != null && dataSet.length > 0){
-      dataSet.forEach(element => {
-        element.unshift("");
-      });
-    }
-    let headerSet = getHeader();
-    if(headerSet != null && headerSet.length > 0){
-      headerSet.unshift({
-        title: '<input type="checkbox"></input>',
-        render: function (data: any, type: any, full: any) {
-          //let id = data.id;
-          let id = 0;
-          return '<input data-id="' + id + '" type="checkbox"></input>';
-        } 
-      });
-      headerSet.push({ 
-        title: "Actions",
-        render: function (data: any, type: any, full: any) {
-          //let id = data.id;
-          let id = 0;
-          return ContactComponent.actionsMenuMaker(id);
-        } 
-      });
-    }
-
+    this.dtHeaders = getHeader();
+    this.dtData = getData();
+    
     this.dtOptions = {
-      data: dataSet,      
-      columns: headerSet,
-      order: [[1, 'desc']],
+      order: [[1, 'asc']],
       columnDefs: [
-        { "orderable": false, "targets": [0, headerSet != null ? headerSet.length - 1 : 0 ]}
+        { "orderable": false, "targets": [0, this.dtHeaders != null ? this.dtHeaders.length + 1 : 0 ]}
       ]
     };
+
   }
 
   ngAfterViewInit(){
-    
+    console.log("Contact Component afterViewInit called");
   }
 
   ngOnDestroy() {
